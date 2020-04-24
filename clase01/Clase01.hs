@@ -1,6 +1,9 @@
+module Clase01 where
+
 f x y = x * x + y * y
 g x y z = x + y + z * z
 
+doble :: Int -> Int
 doble x = 2 * x
 
 suma x y = x + y
