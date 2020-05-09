@@ -24,17 +24,20 @@ esMultiplo3 n | n == 0 = True
 digitoUnidades :: Int -> Int
 digitoUnidades x = mod x 10
 
+-- 8 digitoDecenas: dado un numero natural, extrae su dıgito de las decenas.
+digitoDecenas :: Int -> Int
+digitoDecenas x | x < 10 = 0
+                | otherwise = digitoUnidades (div (x - digitoUnidades x) 10)
+
 -- |Documentacion de diabolico
 -- diabolico indica si todos los digitos de un numero son 6
 diabolico :: Int -> Bool
-diabolico n | (n < 10) && (n /= 6) = False
-            | (n < 10) && (n == 6) = True
-            | digitoUnidades n == 6 = diabolico (div (n - digitoUnidades n) 10)
-            | otherwise = False
+diabolico n | n < 10 = n == 6
+            | otherwise = digitoUnidades n == 6 && diabolico (div n 10)
+
 
 -- |Documentacion de diabolicoExtendido
 -- diabolicoExtendido indica si todos los digitos de un numero son iguales
--- diabolicoExtendido :: Int -> Bool
--- diabolicoExtendido n  | (n < 10 = True
---                       | (n < 10) && (n == digitoUnidades n) = True
---                       | otherwise = diabolico (div (n - digitoUnidades n) 10)
+diabolicoExtendido :: Int -> Bool
+diabolicoExtendido n  | n < 10 = True
+                      | otherwise = digitoUnidades n == digitoDecenas n && diabolicoExtendido (div n 10)

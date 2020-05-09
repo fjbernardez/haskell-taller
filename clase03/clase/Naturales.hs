@@ -28,7 +28,8 @@ where
     -- |Documentacion de resta
     -- resta realiza la resta de dos numeros esteros de la forma: n - m
     resta :: Int -> Int -> Int
-    resta n 0 = n
+    resta 0 _ = 0
+    resta m 0 = m
     resta m n = resta (pred m) (pred n)
 
     -- |Documentacion de menor
