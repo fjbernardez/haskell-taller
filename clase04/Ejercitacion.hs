@@ -32,5 +32,5 @@ sumatoriaG2Aux (n, q) | n == q = n ^ n
 -- sumatoria que responde al ejercicio 6
 sumatoriaG3 :: Int -> Int
 sumatoriaG3 n | n == 0 = 0
-              | mod n 2 == 0 = sumatoriaG3(n-1) + 2^(n)
-              | otherwise = sumatoriaG3(n-1)
+              | mod n 2 == 0 = sumatoriaG3 (n - 1) + 2 ^ n
+              | otherwise = sumatoriaG3 (n - 1)
