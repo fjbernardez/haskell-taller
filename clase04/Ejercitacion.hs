@@ -34,3 +34,27 @@ sumatoriaG3 :: Int -> Int
 sumatoriaG3 n | n == 0 = 0
               | mod n 2 == 0 = sumatoriaG3 (n - 1) + 2 ^ n
               | otherwise = sumatoriaG3 (n - 1)
+
+
+-- |Documentacion de sumatoriaG4
+-- sumatoria que responde al ejercicio 7. Da la suma de todos aquellos naturales menores e iguales a n tal que sus digitos son iguales
+sumatoriaG4 :: Int -> Int
+sumatoriaG4 n | n == 0 = 0
+              | diabolicoExtendido (n) = n + sumatoriaG4 (n - 1)
+              | otherwise = sumatoriaG4 (n - 1)
+
+-- |Documentacion de diabolicoExtendido
+-- diabolicoExtendido indica si todos los digitos de un numero son iguales
+diabolicoExtendido :: Int -> Bool
+diabolicoExtendido n  | n < 10 = True
+                      | otherwise = digitoUnidades n == digitoDecenas n && diabolicoExtendido (div n 10)
+
+-- |Documentacion de digitoUnidades
+-- digitoUnidades indica dado un numero natural su dıgito de las unidades
+digitoUnidades :: Int -> Int
+digitoUnidades x = mod x 10
+
+-- 8 digitoDecenas: dado un numero natural, extrae su dıgito de las decenas.
+digitoDecenas :: Int -> Int
+digitoDecenas x | x < 10 = 0
+                | otherwise = digitoUnidades (div (x - digitoUnidades x) 10)
