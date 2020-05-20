@@ -29,3 +29,8 @@ where
   -- menorDivisor calcula el menor divisor (mayor que 1) de un natural n
   menorDivisor :: Int -> Int
   menorDivisor n = menorDivisorDesde n 2
+
+  -- |Documentacion de esPrimo
+  -- esPrimo indica si el numero natural pasado como argumento es primo
+  esPrimo :: Int -> Bool
+  esPrimo n = menorDivisor n == n
