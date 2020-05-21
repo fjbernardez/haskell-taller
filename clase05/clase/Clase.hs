@@ -34,3 +34,16 @@ where
   -- esPrimo indica si el numero natural pasado como argumento es primo
   esPrimo :: Int -> Bool
   esPrimo n = menorDivisor n == n
+
+  -- |Documentacion de nEsimoPrimo
+  -- nEsimoPrimo devuelve el n-esimo
+  -- "El nEsimo primo es el primer primo DESDE el numero primo anterior primo anterior"
+  nEsimoPrimo :: Int -> Int
+  nEsimoPrimo 1 = 2 -- caso base de los numeros primos, el 2
+  nEsimoPrimo n = minimoPrimoDesde (1 + nEsimoPrimo (n -1)) -- numero primo minimo desde el nEsimo anterior
+
+  -- |Documentacion de minimoPrimoDesde
+  -- minimoPrimoDesde busca el primer primo desde un numero dado
+  minimoPrimoDesde :: Int -> Int
+  minimoPrimoDesde n  | esPrimo n = n
+                      | otherwise = minimoPrimoDesde (n + 1)
