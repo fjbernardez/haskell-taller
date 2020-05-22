@@ -47,3 +47,60 @@ where
   minimoPrimoDesde :: Int -> Int
   minimoPrimoDesde n  | esPrimo n = n
                       | otherwise = minimoPrimoDesde (n + 1)
+
+
+  -- |Documentacion de factorial
+  -- factorial calcula el factorial del argumento
+  factorial :: Int -> Int
+  factorial 0 = 1
+  factorial n = n * factorial (n -1)
+
+  -- |Documentacion de menorFactDesde
+  -- menorFactDesde busca el primer numero DESDE m que se correspodnde con algun k!, k pertenece a los naturales
+  menorFactDesde :: Int -> Int
+  menorFactDesde m = menorFactDesdeAux 1 m
+
+  -- |Documentacion de menorFactDesdeAux
+  -- menorFactDesdeAux busca el primer numero DESDE index que se corresponda con algun k!, k pertenece a los naturales
+  menorFactDesdeAux :: Int -> Int -> Int
+  menorFactDesdeAux index cota  | (factorial index >= cota) = factorial index
+                                | otherwise = menorFactDesdeAux (index+1) cota
+
+
+  -- |Documentacion de esFactorial
+  -- esFactorial indica si un numero es resutado de calcular el factorial de k, para k natural
+  esFactorial :: Int -> Bool
+  esFactorial n = esFactorialAux n 1
+
+
+  -- |Documentacion de esFactorialAux
+  -- esFactorialAux indica si un numero es resutado de calcular el factorial de k >= index con k natural
+  esFactorialAux :: Int -> Int -> Bool
+  esFactorialAux n index  | factorial index > n = False
+                          | factorial index == n = True
+                          | otherwise = esFactorialAux n (index + 1)
+
+  -- |Documentacion de mayorFactHasta
+  -- mayorFactHasta busca el maximo n <= al argumento tal que n = k! para k natural
+  mayorFactHasta :: Int -> Int
+  mayorFactHasta m = mayorFactHastaAux m m
+
+  -- |Documentacion de mayorFactHastaAux
+  -- mayorFactHastaAux busca el mayor numero menor o igual a la cota tal que se corresponda con algun k! para k natural
+  mayorFactHastaAux :: Int -> Int -> Int
+  mayorFactHastaAux index cota  | index <= 0 = 1
+                                | factorial index <= cota = factorial index
+                                | otherwise = mayorFactHastaAux (index-1) cota
+
+  -- |Documentacion de esFibonacci
+  -- esFibonacci indica si el parametro es un numero de Fibonacci --Ejercicio 9
+  esFibonacci :: Int -> Bool
+  esFibonacci numero = validaFibonacciDesde 0 1 numero
+
+  -- |Documentacion de validaFibonacciDesde
+  -- validaFibonacciDesde indica si el numero dado es pertenece a Fibonacci, buscando de forma ascendente desde donde se indique
+  validaFibonacciDesde :: Int -> Int -> Int -> Bool
+  validaFibonacciDesde anterior base numero | numero == 0 = True
+                                            | numero == (anterior+base) = True
+                                            | numero < (anterior+base) = False
+                                            | otherwise = validaFibonacciDesde (base) (anterior+base) numero
