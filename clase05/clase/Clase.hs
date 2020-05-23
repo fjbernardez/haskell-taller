@@ -104,3 +104,42 @@ where
                                             | numero == (anterior+base) = True
                                             | numero < (anterior+base) = False
                                             | otherwise = validaFibonacciDesde (base) (anterior+base) numero
+
+  -- |Documentacion de esSumaInicialDePrimos
+  -- esSumaInicialDePrimos indica si n es igual a la suma de los m primeros numeros primos, para algun m. --Ejercicio 10
+  esSumaInicialDePrimos :: Int -> Bool
+  esSumaInicialDePrimos n = esSumaInicialDePrimosAux n 0 2
+
+  -- |Documentacion de esSumaInicialDePrimosAux
+  -- esSumaInicialDePrimosAux verifica si la cota se corresponde con la suma consecutiva de los primeros numeros primos
+  esSumaInicialDePrimosAux :: Int -> Int -> Int -> Bool
+  esSumaInicialDePrimosAux cota suma index  | cota == suma = True
+                                            | cota < suma = False
+                                            | otherwise = esSumaInicialDePrimosAux cota (suma + index) (proximoPrimo index)
+
+  -- |Documentacion de proximoPrimo
+  -- proximoPrimo retorna el numero primo siguiente al pasado como parametro
+  proximoPrimo :: Int -> Int
+  proximoPrimo cota = proximoPrimoDesde cota 1
+
+  -- |Documentacion de proximoPrimoDesde
+  -- proximoPrimoDesde retorna el numero primo siguiente al pasado como parametro, empezanod desde el indice indicado
+  proximoPrimoDesde :: Int -> Int -> Int
+  proximoPrimoDesde cota index  | nEsimoPrimo(index) > cota = nEsimoPrimo(index)
+                                | nEsimoPrimo(index) <= cota = proximoPrimoDesde cota (index + 1)
+
+  -- |Documentacion de tomaValorMax
+  -- tomaValorMax retorna el numero dado un numero entero "base" ≥ 1 y otro valor "extremo" ≥ base devuelve algun numero "medio" coprendido en el intervalo
+  -- tal que sumaDivisores(medio) = max{sumaDivisores(i) | base ≤ i ≤ extremo} --Ejercicio 11
+  tomaValorMax :: Int -> Int -> Int
+  tomaValorMax base extremo | base == extremo = base
+                            | sumaDivisores base >= sumaDivisores extremo = tomaValorMax base (pred extremo)
+                            | otherwise = tomaValorMax (succ base) extremo
+
+  -- |Documentacion de tomaValorMin
+  -- tomaValorMin retorna el numero dado un numero entero "base" ≥ 1 y otro valor "extremo" ≥ base devuelve algun numero "medio" coprendido en el intervalo
+  -- tal que sumaDivisores(medio) = min{sumaDivisores(i) | base ≤ i ≤ extremo} --Ejercicio 12
+  tomaValorMin :: Int -> Int -> Int
+  tomaValorMin base extremo | base == extremo = base
+                            | sumaDivisores base >= sumaDivisores extremo = tomaValorMax (succ base) extremo
+                            | otherwise = tomaValorMax base (pred extremo)
