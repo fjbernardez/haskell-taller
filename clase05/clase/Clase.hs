@@ -172,7 +172,7 @@ where
                             | otherwise = primoAnteriorAux n (succ index)
 
   -- |Documentacion de goldbach
-  -- goldbach pone a prueba la hiposes de goldbach desde el argumento hasta el numero 4
+  -- goldbach pone a prueba la hiposes de goldbach desde el argumento hasta el numero 4 --Ejercicio 14
   goldbach :: Int -> Bool
   goldbach n  | n < 4 = True
               | not (esPar n) = goldbach (n - 1)
