@@ -170,3 +170,16 @@ where
                             | n == 2 = 2
                             | proximoPrimo (nEsimoPrimo index) == n = nEsimoPrimo index
                             | otherwise = primoAnteriorAux n (succ index)
+
+  -- |Documentacion de goldbach
+  -- goldbach pone a prueba la hiposes de goldbach desde el argumento hasta el numero 4
+  goldbach :: Int -> Bool
+  goldbach n  | n < 4 = True
+              | not (esPar n) = goldbach (n - 1)
+              | esSumaDeDosPrimos n = goldbach (n - 2)
+              | otherwise = False
+
+  -- |Documentacion de esPar
+  -- esPar indica si el argumento es un numero par
+  esPar :: Int -> Bool
+  esPar n = mod n 2 == 0
