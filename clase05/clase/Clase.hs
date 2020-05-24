@@ -143,3 +143,30 @@ where
   tomaValorMin base extremo | base == extremo = base
                             | sumaDivisores base >= sumaDivisores extremo = tomaValorMax (succ base) extremo
                             | otherwise = tomaValorMax base (pred extremo)
+
+  -- |Documentacion de esSumaDeDosPrimos
+  -- esSumaDeDosPrimos dado un numero natural n determine si puede escribirse como suma de dos numeros primos --Ejercicio 13
+  esSumaDeDosPrimos :: Int -> Bool
+  esSumaDeDosPrimos n = esSumaDeDosPrimosAux n 2 3
+
+  -- |Documentacion de esSumaDeDosPrimos
+  -- esSumaDeDosPrimosAux dado un numero natural n determine si puede escribirse como suma de dos numeros primos
+  esSumaDeDosPrimosAux :: Int -> Int -> Int -> Bool
+  esSumaDeDosPrimosAux n minimo maximo  | (minimo == maximo) && (minimo + maximo /= n) = False
+                                        | minimo + minimo > n = False
+                                        | (minimo + minimo) == n || (minimo + maximo) == n = True
+                                        | minimo + maximo < n = esSumaDeDosPrimosAux n minimo (proximoPrimo maximo)
+                                        | otherwise = esSumaDeDosPrimosAux n (proximoPrimo minimo) (primoAnterior maximo)
+
+  -- |Documentacion de primoAnterior
+  -- primoAnterior retorna el numero primo anterior al pasado como parametro. Retorna 2 si se le pasa 2 como argumento
+  primoAnterior :: Int -> Int
+  primoAnterior n = primoAnteriorAux n 1
+
+  -- |Documentacion de primoAnteriorAux
+  -- primoAnteriorAux da funcionalidad a primoAnterior añadiendo un indice de busqueda
+  primoAnteriorAux :: Int -> Int -> Int
+  primoAnteriorAux n index  | not (esPrimo n) = 0
+                            | n == 2 = 2
+                            | proximoPrimo (nEsimoPrimo index) == n = nEsimoPrimo index
+                            | otherwise = primoAnteriorAux n (succ index)
