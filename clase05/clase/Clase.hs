@@ -183,3 +183,21 @@ where
   -- esPar indica si el argumento es un numero par
   esPar :: Int -> Bool
   esPar n = mod n 2 == 0
+
+  -- |Documentacion de primosGem
+  -- primosGem devuelve la cantidad de pares de primos gemelos (a, b) que verifican b ≤ cota, siendo a = b - 2 --Ejercicio 15
+  primosGem :: Int -> Int
+  primosGem n = primosGemAux n 2
+
+  -- |Documentacion de primosGemAux
+  -- primosGemAux
+  primosGemAux :: Int -> Int -> Int
+  primosGemAux cota index | (cota <= 4) || (index > cota) = 0
+                          | index - (primoAnterior index) == 2 = 1 + primosGemAux cota (proximoPrimo index)
+                          | otherwise = primosGemAux cota (proximoPrimo index)
+
+  -- |Documentacion de proxPrimosGem
+  -- proxPrimosGem  dado n devuelve el primer par de gemelos (a, b) tal que a > n, siendo a = b - 2 --Ejercicio 16
+  proxPrimosGem :: Int -> (Int,Int)
+  proxPrimosGem n | proximoPrimo n - proximoPrimo (proximoPrimo n) == -2 = (proximoPrimo n, proximoPrimo (proximoPrimo n))
+                  | otherwise = proxPrimosGem (proximoPrimo n)
