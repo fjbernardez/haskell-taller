@@ -201,3 +201,28 @@ where
   proxPrimosGem :: Int -> (Int,Int)
   proxPrimosGem n | proximoPrimo n - proximoPrimo (proximoPrimo n) == -2 = (proximoPrimo n, proximoPrimo (proximoPrimo n))
                   | otherwise = proxPrimosGem (proximoPrimo n)
+
+  -- |Documentacion de largoSecuencia
+  -- largoSecuencia  devuelve la cantidad de reducciones hasta llegar a cero comenzando en n y siguiendo la conjetura de Collatz --Ejercicio 17.a
+  largoSecuencia :: Int -> Int
+  largoSecuencia n  | not (esPositivo n) = -1 --condicion de de conjetura de Collatz
+                    | n == 1 = 0
+                    | esPar n = 1 + largoSecuencia (div n 2)
+                    | otherwise = 1 + largoSecuencia (3 * n + 1)
+
+  -- |Documentacion de esPositivo
+  -- esPositivo  indica si el argumento es positivo
+  esPositivo :: Int -> Bool
+  esPositivo n = n > 0
+
+  -- |Documentacion de mayorLargoSecuenciaHasta
+  -- ¿que numero menor a 10.000 como inicio de la sucesion de Collatz produce la secuencia de numeros mas larga hasta llegar a 1? --Ejercicio 17.b
+  mayorLargoSecuenciaHasta :: Int -> Int
+  mayorLargoSecuenciaHasta n = mayorLargoSecuenciaEntre 1 n
+
+  -- |Documentacion de mayorLargoSecuenciaEntre
+  -- mayorLargoSecuenciaEntre dada la cota maxima e infima para inicio de la sucesion de Collatz, indica el valor que produce la secuencia de numeros mas larga hasta llegar a 1
+  mayorLargoSecuenciaEntre :: Int -> Int -> Int
+  mayorLargoSecuenciaEntre cotaInferior cotaSuperior  | largoSecuencia cotaInferior == largoSecuencia cotaSuperior = cotaInferior
+                                                      | largoSecuencia cotaInferior < largoSecuencia cotaSuperior = mayorLargoSecuenciaEntre (succ cotaInferior) cotaSuperior
+                                                      | otherwise = mayorLargoSecuenciaEntre cotaInferior (pred cotaSuperior)
