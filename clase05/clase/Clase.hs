@@ -37,10 +37,11 @@ where
 
   -- |Documentacion de nEsimoPrimo
   -- nEsimoPrimo devuelve el n-esimo
-  -- "El nEsimo primo es el primer primo DESDE el numero primo anterior primo anterior"
+  -- "El nEsimo primo es el primer primo DESDE el numero primo anterior". "Primo siguiente al nEsimo - 1"
   nEsimoPrimo :: Int -> Int
   nEsimoPrimo 1 = 2 -- caso base de los numeros primos, el 2
-  nEsimoPrimo n = minimoPrimoDesde (1 + nEsimoPrimo (n -1)) -- numero primo minimo desde el nEsimo anterior
+  nEsimoPrimo n = minimoPrimoDesde (1 + nEsimoPrimo (n -1)) -- numero primo minimo desde el nEsimo anterior.
+                                                            -- minimoPrimoDesde retonaria el mismo valor de pasarle un primo
 
   -- |Documentacion de minimoPrimoDesde
   -- minimoPrimoDesde busca el primer primo desde un numero dado
