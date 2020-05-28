@@ -25,6 +25,7 @@ where
     - La funcion "esApseudoprimo" fue construida finalizando el trabajo practico para la implementacion de "esCarmichael", y no
       crei conveniente reemplazar los llamados de "es2Pseudoprimo" y "es3Pseudoprimo" en todo el codigo. Pero es claro que es posible
       hacerlo indicando el parametro "a" en cada caso. Ejemplo: "es3Pseudoprimo n" coincide con "esApseudoprimo 3 n"
+    - La funcion "esCarmichael" con el parametro 75361 retorna true como es de esperar, aunque el tiempo de ejecución es de aprox 5 minutos (309 segundos)
 
     Muchas gracias
     Bernardez Francisco
