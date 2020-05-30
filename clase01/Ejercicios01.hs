@@ -1,4 +1,4 @@
-module Ejercicios where
+module Ejercicios01 where
 
 import Clase
 

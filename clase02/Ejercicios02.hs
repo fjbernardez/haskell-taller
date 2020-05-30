@@ -1,4 +1,4 @@
-module Ejercicios
+module Ejercicios02
 where
   {-
     este modulo son los ejercicios de la clase 2

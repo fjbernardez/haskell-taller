@@ -1,4 +1,4 @@
-module Clase
+module Clase05
 where
   {-
     este modulo son los ejercicios de la clase 5

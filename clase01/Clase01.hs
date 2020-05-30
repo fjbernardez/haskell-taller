@@ -1,4 +1,4 @@
-module Clase where
+module Clase01 where
 
 f x y = x * x + y * y
 g x y z = x + y + z * z

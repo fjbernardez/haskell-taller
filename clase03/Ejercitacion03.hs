@@ -1,4 +1,4 @@
-module Ejercitacion
+module Ejercitacion03
 where
   {-
     este modulo completa la ejercitacion de la clase 3 junto con las funciones

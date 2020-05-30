@@ -1,4 +1,4 @@
-module Ejercitacion
+module Ejercitacion04
 where
   {-
     este modulo es la ejercitacion de la clase 4
