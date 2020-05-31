@@ -50,10 +50,8 @@ where
   -- quitarTodas elimina todas las apariciones del elemento en la lista (de haberlos)
   quitarTodas :: Int -> [Int] -> [Int]
   quitarTodas n [] = []
-  quitarTodas n (x:xs)  | x == n && longitud (x:xs) == 1 = []
-                        | longitud (x:xs) == 1 = [x]
-                        | x == n = quitarTodas n xs
-                        | otherwise = anadir x (quitarTodas n xs)
+  quitarTodas n (x:xs)  | x == n = quitarTodas n xs
+                        | otherwise = x : quitarTodas n xs
 
   -- |Documentacion de hayRepetidos --ejercicio 8
   -- hayRepetidos indica si existe algun elemento repetido
@@ -105,6 +103,13 @@ where
   concatenar primera segunda  | null segunda = primera -- termine de concatenar dado que segunda lista esta vacia
                               | otherwise   = concatenar (anadirUltimo (head segunda) primera) (tail segunda) -- agrego al final de la primera la cabeza de la seunga y repito con la segunda sin cabeza y la primera ya concatenada
 
+  -- |Documentacion de zipi --ejercicio 15
+  -- zipi  devuelve una lista de tuplas, cada tupla contiene elementos de ambas listas que ocurren en la misma posicion. En caso que tengan
+  -- distintas longitudes, la longitud de la lista resultado es igual a la longitud de la lista mas chica pasada por parametro
+  zipi :: [a] -> [b] -> [(a,b)]
+  zipi _ [] = []
+  zipi [] _ = []
+  zipi (xa:xsa) (xb:xsb) = (xa, xb ) : (zipi xsa xsb)
 
 
   {- funciones auxiliares: -}
@@ -145,15 +150,3 @@ where
   anadirUltimo :: Int -> [Int] -> [Int]
   anadirUltimo n [] = [n]
   anadirUltimo n lista = reverso( anadir n (reverso lista) )
-
-
-
-
-
-
-
-
-
-
-
---
