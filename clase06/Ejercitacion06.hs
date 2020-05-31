@@ -92,6 +92,13 @@ where
   ordenar [x] = [x]
   ordenar (x:xs) = anadir (minimo (x:xs)) ( ordenar ( quitar ( minimo (x:xs) ) (x:xs) ) )
 
+  -- |Documentacion de reverso --ejercicio 13
+  -- reverso  dada una lista invierte su orden
+  reverso :: [Int] -> [Int]
+  reverso [] = []
+  reverso [x] = [x]
+  reverso (x:xs) = anadir ( darUltimo (x:xs) ) (reverso (quitarUltimo (x:xs) ) )
+
 
 
   {- funciones auxiliares: -}
@@ -119,6 +126,13 @@ where
   minimo (x:xs) | longitud (x:xs) == 2 = min x (head xs)
                 | x < (head xs) = minimo (anadir x (tail xs)) -- descarto head de tail de la lista, osea el primer elemento de la cola de la lista
                 | otherwise = minimo xs -- descarto head
+
+  -- |Documentacion de quitarUltimo
+  -- quitarUltimo retorna la otra lista sin el ultimo elemnto
+  quitarUltimo :: [Int] -> [Int]
+  quitarUltimo [] = []
+  quitarUltimo [x] = [] --quito ultimo elemento
+  quitarUltimo (x:xs) = anadir (x) (quitarUltimo xs)
 
 
 
