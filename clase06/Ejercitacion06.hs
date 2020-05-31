@@ -99,6 +99,12 @@ where
   reverso [x] = [x]
   reverso (x:xs) = anadir ( darUltimo (x:xs) ) (reverso (quitarUltimo (x:xs) ) )
 
+  -- |Documentacion de concatenar --ejercicio 14
+  -- concatenar devuelve la concatenacion de la primera lista con la segunda
+  concatenar :: [Int] -> [Int] -> [Int]
+  concatenar primera segunda  | null segunda = primera -- termine de concatenar dado que segunda lista esta vacia
+                              | otherwise   = concatenar (anadirUltimo (head segunda) primera) (tail segunda) -- agrego al final de la primera la cabeza de la seunga y repito con la segunda sin cabeza y la primera ya concatenada
+
 
 
   {- funciones auxiliares: -}
@@ -133,6 +139,12 @@ where
   quitarUltimo [] = []
   quitarUltimo [x] = [] --quito ultimo elemento
   quitarUltimo (x:xs) = anadir (x) (quitarUltimo xs)
+
+  -- |Documentacion de anadirUltimo
+  -- anadirUltimo añade un numero n al final de lista indicada
+  anadirUltimo :: Int -> [Int] -> [Int]
+  anadirUltimo n [] = [n]
+  anadirUltimo n lista = reverso( anadir n (reverso lista) )
 
 
 
