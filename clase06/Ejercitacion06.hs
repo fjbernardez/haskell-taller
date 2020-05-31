@@ -32,6 +32,13 @@ where
   sumarElUltimo [] = []
   sumarElUltimo (x:xs) = sumarN (darUltimo (x:xs)) (x:xs)
 
+  -- |Documentacion de pares --ejercicio 5
+  -- pares dada una lista devuelve otra lista con los elementos pares de la lista original
+  pares :: [Int] -> [Int]
+  pares [] = [] -- este caso no solo evita errores, si no que resulta caso base cuando se analizaron todos los elemtos de la lista
+  pares (x:xs) | esPar x = addElemento x (pares (xs))
+               | otherwise = pares xs
+
 
   {- funciones auxiliares: -}
 
@@ -46,3 +53,8 @@ where
   darUltimo :: [Int] -> Int
   darUltimo (x:xs) | longitud (x:xs) == 1 = x
                    | otherwise = darUltimo xs
+
+  -- |Documentacion de esPar
+  -- esPar indica si el arumento es par
+  esPar :: Int -> Bool
+  esPar n = mod n 2 == 0
