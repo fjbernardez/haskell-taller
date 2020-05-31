@@ -26,17 +26,23 @@ where
   sumarElPrimero [] = []
   sumarElPrimero (x:xs) = sumarN x (x:xs)
 
+  -- |Documentacion de sumarElUltimo --ejercicio 4
+  -- sumarElUltimo dada una lista no vacia, suma el ultimo elemento a toda la lista
+  sumarElUltimo :: [Int] -> [Int]
+  sumarElUltimo [] = []
+  sumarElUltimo (x:xs) = sumarN (darUltimo (x:xs)) (x:xs)
+
 
   {- funciones auxiliares: -}
 
   -- |Documentacion de addElemento
-  -- addElemento añade un numero n elemento a la lista indicada
+  -- addElemento añade un numero n elemento a la lista indicada -- a : []
   addElemento :: Int -> [Int] -> [Int]
   addElemento n []        = n : []
-  addElemento n (x : xs)  = n : (x : xs)
+  addElemento n (x:xs)  = n : (x:xs)
 
-
-
-
-
---
+  -- |Documentacion de darUltimo
+  -- darUltimo retorna el ultimo elemnto de la lista indicada --last []
+  darUltimo :: [Int] -> Int
+  darUltimo (x:xs) | longitud (x:xs) == 1 = x
+                   | otherwise = darUltimo xs
