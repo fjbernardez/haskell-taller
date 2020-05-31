@@ -18,7 +18,7 @@ where
   sumarN :: Int -> [Int] -> [Int]
   sumarN n [] = []
   sumarN n lista  | longitud lista == 1 = head lista + n : [] --retorno una lista que contenga solo el ultimo elemento para empezar la concatenacion
-                  | otherwise = addElemento (head lista + n) (sumarN n (tail lista))
+                  | otherwise = anadir (head lista + n) (sumarN n (tail lista))
 
   -- |Documentacion de sumarElPrimero --ejercicio 3
   -- sumarElPrimero dada una lista no vacia, suma el primer elemento a toda la lista
@@ -36,17 +36,24 @@ where
   -- pares dada una lista devuelve otra lista con los elementos pares de la lista original
   pares :: [Int] -> [Int]
   pares [] = [] -- este caso no solo evita errores, si no que resulta caso base cuando se analizaron todos los elemtos de la lista
-  pares (x:xs) | esPar x = addElemento x (pares (xs))
+  pares (x:xs) | esPar x = anadir x (pares (xs))
                | otherwise = pares xs
+
+   -- |Documentacion de quitar --ejercicio 6
+   -- quitar elimina la primera aparicion del elemento en la lista (de haberla)
+  quitar :: Int -> [Int] -> [Int]
+  quitar n [] = []
+  quitar n (x:xs) | x == n = xs
+                  | otherwise = anadir x (quitar n xs)
 
 
   {- funciones auxiliares: -}
 
-  -- |Documentacion de addElemento
-  -- addElemento añade un numero n elemento a la lista indicada -- a : []
-  addElemento :: Int -> [Int] -> [Int]
-  addElemento n []        = n : []
-  addElemento n (x:xs)  = n : (x:xs)
+  -- |Documentacion de anadir
+  -- anadir añade un numero n elemento a la lista indicada -- a : []
+  anadir :: Int -> [Int] -> [Int]
+  anadir n []     = n : []
+  anadir n (x:xs) = n : (x:xs)
 
   -- |Documentacion de darUltimo
   -- darUltimo retorna el ultimo elemnto de la lista indicada --last []
