@@ -85,6 +85,14 @@ where
                 | x > (head xs) = maximo (anadir x (tail xs)) -- descarto head de tail de la lista, osea el primer elemento de la cola de la lista
                 | otherwise = maximo xs -- descarto head
 
+  -- |Documentacion de ordenar --ejercicio 12
+  -- ordenar ordena los elementos de forma creciente
+  ordenar :: [Int] -> [Int]
+  ordenar [] = []
+  ordenar [x] = [x]
+  ordenar (x:xs) = anadir (minimo (x:xs)) ( ordenar ( quitar ( minimo (x:xs) ) (x:xs) ) )
+
+
 
   {- funciones auxiliares: -}
 
@@ -105,6 +113,12 @@ where
   esPar :: Int -> Bool
   esPar n = mod n 2 == 0
 
+  -- |Documentacion de minimo
+  -- minimo que calcula el minimo elemento de una lista no vacia
+  minimo :: [Int] -> Int
+  minimo (x:xs) | longitud (x:xs) == 2 = min x (head xs)
+                | x < (head xs) = minimo (anadir x (tail xs)) -- descarto head de tail de la lista, osea el primer elemento de la cola de la lista
+                | otherwise = minimo xs -- descarto head
 
 
 
