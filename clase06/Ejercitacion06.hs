@@ -46,6 +46,45 @@ where
   quitar n (x:xs) | x == n = xs
                   | otherwise = anadir x (quitar n xs)
 
+  -- |Documentacion de quitarTodas --ejercicio 7
+  -- quitarTodas elimina todas las apariciones del elemento en la lista (de haberlos)
+  quitarTodas :: Int -> [Int] -> [Int]
+  quitarTodas n [] = []
+  quitarTodas n (x:xs)  | x == n && longitud (x:xs) == 1 = []
+                        | longitud (x:xs) == 1 = [x]
+                        | x == n = quitarTodas n xs
+                        | otherwise = anadir x (quitarTodas n xs)
+
+  -- |Documentacion de hayRepetidos --ejercicio 8
+  -- hayRepetidos indica si existe algun elemento repetido
+  hayRepetidos :: [Int] -> Bool
+  hayRepetidos [] = False
+  hayRepetidos (x:xs) | pertenece x xs = True
+                      | otherwise = hayRepetidos xs
+
+  -- |Documentacion de eliminarRepetidosAlFinal --ejercicio 9
+  -- eliminarRepetidosAlFinal deja en la lista la primera aparicion de cada elemento, eliminando las repeticiones adicionales
+  eliminarRepetidosAlFinal :: [Int] -> [Int]
+  eliminarRepetidosAlFinal [] = []
+  eliminarRepetidosAlFinal (x:xs) | not (pertenece x xs) = anadir x (eliminarRepetidosAlFinal xs) -- not (pertenece x xs) = "no esta repetido" pertenece x xs = "esta repetido"
+                                  | pertenece x xs = anadir x (eliminarRepetidosAlFinal (quitarTodas x xs))
+                                  | otherwise = eliminarRepetidosAlFinal xs
+
+  -- |Documentacion de eliminarRepetidosAlInicio --ejercicio 10
+  -- eliminarRepetidosAlInicio que deja en la lista la ultima aparicion de cada elemento, eliminando las repeticiones adicionales
+  eliminarRepetidosAlInicio :: [Int] -> [Int]
+  eliminarRepetidosAlInicio [] = []
+  eliminarRepetidosAlInicio (x:xs)  | not (pertenece x xs) = anadir x (eliminarRepetidosAlInicio xs)
+                                    | otherwise = eliminarRepetidosAlInicio xs
+
+
+  -- |Documentacion de maximo --ejercicio 11
+  -- maximo que calcula el maximo elemento de una lista no vacia
+  maximo :: [Int] -> Int
+  maximo (x:xs) | longitud (x:xs) == 2 = max x (head xs)
+                | x > (head xs) = maximo (anadir x (tail xs)) -- descarto head de tail de la lista, osea el primer elemento de la cola de la lista
+                | otherwise = maximo xs -- descarto head
+
 
   {- funciones auxiliares: -}
 
@@ -65,3 +104,16 @@ where
   -- esPar indica si el arumento es par
   esPar :: Int -> Bool
   esPar n = mod n 2 == 0
+
+
+
+
+
+
+
+
+
+
+
+
+--
