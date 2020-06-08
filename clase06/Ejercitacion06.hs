@@ -96,6 +96,7 @@ where
   reverso [] = []
   reverso [x] = [x]
   reverso (x:xs) = anadir ( darUltimo (x:xs) ) (reverso (quitarUltimo (x:xs) ) )
+  -- TODO: Reverso xs y agregar cabeza al final. Siempre primero la recursion en xs
 
   -- |Documentacion de concatenar --ejercicio 14
   -- concatenar devuelve la concatenacion de la primera lista con la segunda
