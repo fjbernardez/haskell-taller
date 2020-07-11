@@ -58,11 +58,11 @@ where
                                                     | otherwise = solucDosEcPotenciasPrimoOrd_Bool (r2, m2) (r1, m1)
 
   solucSistemaPotenciasPrimo_Bool :: [(Int, Int)] -> Bool
-  solucSistemaPotenciasPrimo_Bool [e2] = True -- "neutro" False && True = True True && True = True
+  solucSistemaPotenciasPrimo_Bool [e2] = True -- "neutro" False && True = False True && True = True
   solucSistemaPotenciasPrimo_Bool (e1:e2:es) = (solucDosEcPotenciasPrimo_Bool e1 e2) && ( solucSistemaPotenciasPrimo_Bool (e2:es) )
 
   sistemaEquivSinPrimosMalosAux_Bool :: [(Int, Int)] -> [Int] -> Bool
-  sistemaEquivSinPrimosMalosAux_Bool sist [] = True -- "neutro" False && True = True True && True = True
+  sistemaEquivSinPrimosMalosAux_Bool sist [] = True -- "neutro" False && True = False True && True = True
   sistemaEquivSinPrimosMalosAux_Bool sist (p:ps) = (solucSistemaPotenciasPrimo_Bool pri) && (sistemaEquivSinPrimosMalosAux_Bool seg ps)
    where (pri, seg) = desdoblarSistemaEnFcionPrimo sist p
   ----------------------------------------------------------------------------------------------------------------------------------------------------
